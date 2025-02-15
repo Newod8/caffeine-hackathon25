@@ -1,2 +1,10 @@
 # caffeine-hackathon25
-Team Caffeine's repo for the Crimson Code Hackathon
+The Caffeine Feins' repository for the 2025 Crimson Code Hackathon
+
+## The Caffeine Feins (Team Members):
+* Owen Downs (Newod8)
+* Christopher Sweet ()
+* Nicholas Lopez (Nick2K4L)
+
+## Project Description
+brainstorming
