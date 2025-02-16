@@ -5,7 +5,6 @@ public class SandGrain : MonoBehaviour
 {
     private bool isFrozen = false;
     private Rigidbody2D rigidBody;
-    private bool isInsideBox;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
