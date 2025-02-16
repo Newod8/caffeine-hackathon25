@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class SaltShaker : MonoBehaviour
@@ -9,14 +10,18 @@ public class SaltShaker : MonoBehaviour
     public float deadzone = 1;
     public float smoothness = 100;
     public float spawnRate = 1;
+    public GameObject sandGrain;
+    public Color sandColor;
+
     private Rigidbody2D rigidBody;
     private float spawnTimer = 0f;
+    private bool isValid;
 
-    public GameObject sandGrain;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        this.isValid = true;
         gameObject.transform.position = new Vector2(0, 0);
         rigidBody = gameObject.GetComponent<Rigidbody2D>();
     }
@@ -40,11 +45,28 @@ public class SaltShaker : MonoBehaviour
         {
             spawnTimer += Time.deltaTime;
 
-            if (spawnTimer > spawnRate)
+            if (spawnTimer > spawnRate && isValid)
             {
                 spawnTimer = 0;
                 Instantiate(sandGrain, rigidBody.position, Quaternion.identity);
             }
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("PlayArea")) // Check if it's a salt grain entering the killbox
+        {
+            this.isValid = false;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("PlayArea"))
+        {
+            this.isValid = true;
+        }
+    }
+
 }

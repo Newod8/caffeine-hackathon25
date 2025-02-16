@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.74, y: -0.44, z: 0}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
+  m_LocalScale: {x: 0.19999999, y: 0.19999999, z: 0.19999999}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -106,6 +106,7 @@ MonoBehaviour:
   deadzone: 0.05
   smoothness: 1
   spawnRate: 0.05
+  isValid: 1
   sandGrain: {fileID: 2278392197989527016, guid: 8c986b48d2c5a3344b38b03a9f84a76a, type: 3}
 --- !u!50 &3440563340320757950
 Rigidbody2D:
