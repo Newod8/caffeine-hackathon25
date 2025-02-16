@@ -58,22 +58,10 @@ public class AvailableColors : MonoBehaviour
             // Perform color quantization and retrieve dominant colors
             finalColors = ColorQuantization(image, numberOfColors);
 
-            Debug.Log($"Extracted {finalColors.Count} dominant colors from the image.");
-            for (int i = 0; i < finalColors.Count; i++)
-            {
-                Debug.Log($"Color {i + 1}: {finalColors[i]}");
-            }
-
             // Display the dominant colors in the UI
             //DisplayColors();
             gameObject.GetComponent<ColorPickerGenerator>().GenerateColors(finalColors.ToArray());
 
-            // Log the extracted colors
-            Debug.Log($"Extracted {finalColors.Count} dominant colors from the image.");
-            for (int i = 0; i < finalColors.Count; i++)
-            {
-                Debug.Log($"Color {i + 1}: {finalColors[i]}");
-            }
         }
         else
         {

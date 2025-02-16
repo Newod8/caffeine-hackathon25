@@ -15,7 +15,7 @@ public class ImageGenerationScript : MonoBehaviour
     // Retrieve the OpenAI API key from environment variables
     private static readonly string? apiKey = Environment.GetEnvironmentVariable("OPEN_AI_KEY");
     // Define the API endpoint URL for image generation
-    private static readonly string apiUrl = "https://api.openai.com/v1/images/generations";
+    //private static readonly string apiUrl = "https://api.openai.com/v1/images/generations";
 
     public string filePath;
 
@@ -28,8 +28,8 @@ public class ImageGenerationScript : MonoBehaviour
 
     private void Start()
     {
-        
-        this.filePath = "C:\\Users\\Nicholas Lopez\\Desktop\\25 Hackathon\\caffeine-hackathon25\\Assets\\GeneratedImages\\image_20250216_051435.png";
+
+        this.filePath = "Assets\\GeneratedImages\\image_20250215_231046.png";
         Texture2D texture = new Texture2D(2, 2);
         texture.LoadImage(File.ReadAllBytes(this.filePath));
 

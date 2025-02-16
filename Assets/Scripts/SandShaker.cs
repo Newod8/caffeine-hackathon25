@@ -12,13 +12,12 @@ public class SaltShaker : MonoBehaviour
     public float smoothness = 100;
     public float spawnRate = 1;
     public GameObject sandGrain;
-    public string colorHex;
-    public Color sandColor;
 
+    private Color sandColor;
     private Rigidbody2D rigidBody;
     private SpriteRenderer spriteRenderer;
     private float spawnTimer = 0f;
-    public bool isValid;
+    private bool isValid;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -28,6 +27,7 @@ public class SaltShaker : MonoBehaviour
         gameObject.transform.position = new Vector2(0, 0);
         rigidBody = gameObject.GetComponent<Rigidbody2D>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        spriteRenderer.color = Color.yellow;
     }
 
     // Update is called once per frame
