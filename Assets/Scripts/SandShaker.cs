@@ -16,6 +16,7 @@ public class SaltShaker : MonoBehaviour
     public Color sandColor;
 
     private Rigidbody2D rigidBody;
+    private SpriteRenderer spriteRenderer;
     private float spawnTimer = 0f;
     public bool isValid;
 
@@ -26,6 +27,7 @@ public class SaltShaker : MonoBehaviour
         sandColor = Color.yellow;
         gameObject.transform.position = new Vector2(0, 0);
         rigidBody = gameObject.GetComponent<Rigidbody2D>();
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -64,6 +66,7 @@ public class SaltShaker : MonoBehaviour
                 isValid = false;
                 break;
             case "ColorPicker":
+                spriteRenderer.color = collision.GetComponent<SpriteRenderer>().color;
                 this.sandColor = collision.GetComponent<SpriteRenderer>().color;
                 break;
         }
