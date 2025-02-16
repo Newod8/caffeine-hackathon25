@@ -7,6 +7,7 @@ using System;
 using UnityEngine;
 using System.Threading.Tasks;
 using System.Linq;
+using UnityEngine.UI;
 
 public class ImageGenerationScript : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class ImageGenerationScript : MonoBehaviour
     // Define the API endpoint URL for image generation
     private static readonly string apiUrl = "https://api.openai.com/v1/images/generations";
 
+    // Reference to the Image component in the scene
+    [SerializeField]
+    private Image displayImage;
     private async void Start()
     {
 
@@ -55,7 +59,7 @@ public class ImageGenerationScript : MonoBehaviour
     /// </summary>
     /// <param name="prompt">The description for the image to be generated.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
-    public static async Task GenerateImage(string prompt)
+    public async Task GenerateImage(string prompt)
     {
         // Create an instance of HttpClient
         using HttpClient client = new();
@@ -84,29 +88,60 @@ public class ImageGenerationScript : MonoBehaviour
         // Handle the API response
         if (response.IsSuccessStatusCode)
         {
-            // Read and parse the response JSON
+          await this.HandleResponseAndDownload(response);
+        }
+        else
+        {
+            // Print the error if the request failed
+            Console.WriteLine($"Error: {response.StatusCode}\n{await response.Content.ReadAsStringAsync()}");
+        }
+    }
 
+    /// <summary>
+    /// This method will handle the response from the API and download the image.
+    /// </summary>
+    /// <param name="response"></param>
+    /// <returns></returns>
+    private async Task HandleResponseAndDownload(HttpResponseMessage response)
+    {
+        // Handle the API response
+        if (response.IsSuccessStatusCode)
+        {
+            
             // Read the response content as a string
             string result = await response.Content.ReadAsStringAsync();
-
             // Parse the JSON response
             JObject json = JObject.Parse(result);
 
             // Loop through each image in the response
             int imageCount = json["data"].Count();
-
+            // Create the GeneratedImages folder if it doesn't exist
+            string folderPath = Path.Combine(Application.dataPath, "GeneratedImages");
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
             for (int i = 0; i < imageCount; i++)
             {
                 string imageUrl = json["data"][i]["url"].ToString();
-
                 // Generate a unique filename for each image
-                string filename = $"image_{DateTime.Now:yyyyMMdd_HHmmss}_{i}.png";
+                string filename = $"image_{DateTime.Now:yyyyMMdd_HHmmss}.png";
 
-                Console.WriteLine($"Image URL: {imageUrl}");
+                string filePath = Path.Combine(folderPath, filename);\
 
-                string binPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, filename);
-                await DownloadImage(imageUrl, binPath);
-                Console.WriteLine($"Image downloaded as {binPath}");
+                Debug.Log($"Image URL: {imageUrl}");
+
+                await DownloadImage(imageUrl, filePath);
+
+                Texture2D texture = new Texture2D(2, 2);
+
+                texture.LoadImage(File.ReadAllBytes(filePath));
+
+                // Convert Texture2D to Sprite and assign to Image component
+                Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+
+                this.displayImage.sprite = sprite;
+                Console.WriteLine($"Image downloaded as {filePath}");
             }
         }
         else
@@ -127,6 +162,7 @@ public class ImageGenerationScript : MonoBehaviour
         using HttpClient client = new();
         // Download the image as a byte array
         byte[] imageBytes = await client.GetByteArrayAsync(imageUrl);
+
         // Write the image bytes to a file
         await File.WriteAllBytesAsync(fileName, imageBytes);
     }
