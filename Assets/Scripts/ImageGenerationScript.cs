@@ -19,7 +19,7 @@ public class ImageGenerationScript : MonoBehaviour
     public string filePath;
 
     // Reference to the AvailableColors component
-    public AvailableColors availableColors;
+    //public AvailableColors availableColors;
 
     // Reference to the Image component in the scene
     [SerializeField]
@@ -27,11 +27,11 @@ public class ImageGenerationScript : MonoBehaviour
 
     private async void Start()
     {
-        if (availableColors == null)
-        {
-            Debug.LogError("AvailableColors reference is not assigned in the Inspector.");
-            return;
-        }
+        //if (availableColors == null)
+        //{
+        //    Debug.LogError("AvailableColors reference is not assigned in the Inspector.");
+        //    return;
+        //}
 
         var random = new System.Random();
         var color = String.Format("#{0:X6}", random.Next(0x1000000)); // = "#A197B9"
@@ -138,10 +138,15 @@ public class ImageGenerationScript : MonoBehaviour
 
                 this.displayImage.sprite = sprite;
 
-                // Now we get the colors from the image
-                availableColors.SetFilePath(this.filePath);
+                SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+                spriteRenderer.sprite = sprite;
 
-                Debug.Log($"Unique Colors found {availableColors.finalColors.Count}");
+                // Now we get the colors from the image
+                gameObject.GetComponent<AvailableColors>().SetFilePath(this.filePath);
+
+                gameObject.GetComponent<AvailableColors>().GetColors();
+
+                //Debug.Log($"Unique Colors found {availableColors.finalColors.Count}");
 
                 Debug.Log($"Image downloaded as {this.filePath}");
             }

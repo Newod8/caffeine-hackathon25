@@ -13,7 +13,6 @@ public class AvailableColors : MonoBehaviour
     public int numberOfColors = 5; // Number of dominant colors to extract
 
     // Reference to a UI Container to display colors
-    public GameObject colorPrefab; // Assign a prefab with an Image component
     public Transform colorContainer;
 
 
@@ -60,7 +59,8 @@ public class AvailableColors : MonoBehaviour
             finalColors = ColorQuantization(image, numberOfColors);
 
             // Display the dominant colors in the UI
-            DisplayColors();
+            //DisplayColors();
+            gameObject.GetComponent<ColorPickerGenerator>().GenerateColors(finalColors.ToArray());
 
             // Log the extracted colors
             Debug.Log($"Extracted {finalColors.Count} dominant colors from the image.");
@@ -107,44 +107,38 @@ public class AvailableColors : MonoBehaviour
             float r = centers.At<float>(i, 2); // Red
 
             // Convert BGR to RGB and create Unity Color
-            Color unityColor = new Color(r * 255, g * 255, b * 255, 1f * 255);
+            Color unityColor = new Color(r , g, b, 1f);
             dominantColors.Add(unityColor);
             sb.AppendLine(unityColor.ToString());
         }
-
+        
         return dominantColors;
     }
 
     /// <summary>
     /// Displays the extracted colors in the UI.
     /// </summary>
-    private void DisplayColors()
-    {
-        if (colorContainer == null || colorPrefab == null)
-        {
-            Debug.LogError("Color Container or Color Prefab is not assigned.");
-            return;
-        }
+    //private void DisplayColors()
+    //{
 
-        // Clear existing color displays
-        foreach (Transform child in colorContainer)
-        {
-            Destroy(child.gameObject);
-        }
+    //    // Clear existing color displays
+    //    foreach (Transform child in colorContainer)
+    //    {
+    //        Destroy(child.gameObject);
+    //    }
 
-        // Instantiate color prefabs and set their colors
-        foreach (Color color in finalColors)
-        {
-            GameObject colorObj = Instantiate(colorPrefab, colorContainer);
-            Image img = colorObj.GetComponent<Image>();
-            if (img != null)
-            {
-                img.color = color;
-            }
-            else
-            {
-                Debug.LogError("Color Prefab does not have an Image component.");
-            }
-        }
-    }
+    //    // Instantiate color prefabs and set their colors
+    //    foreach (Color color in finalColors)
+    //    {
+    //        Image img = colorObj.GetComponent<Image>();
+    //        if (img != null)
+    //        {
+    //            img.color = color;
+    //        }
+    //        else
+    //        {
+    //            Debug.LogError("Color Prefab does not have an Image component.");
+    //        }
+    //    }
+    //}
 }
