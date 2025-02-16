@@ -13,7 +13,7 @@ using System.Runtime.CompilerServices;
 public class ImageGenerationScript : MonoBehaviour
 {
     // Retrieve the OpenAI API key from environment variables
-    private static readonly string? apiKey = Environment.GetEnvironmentVariable("OPEN_AI_KEY");
+    //private static readonly string? apiKey = Environment.GetEnvironmentVariable("OPEN_AI_KEY");
     // Define the API endpoint URL for image generation
     //private static readonly string apiUrl = "https://api.openai.com/v1/images/generations";
 
@@ -29,17 +29,20 @@ public class ImageGenerationScript : MonoBehaviour
     private void Start()
     {
 
-        this.filePath = "Assets\\GeneratedImages\\image_20250215_231046.png";
+        this.filePath = "Assets\\GeneratedImages\\image_20250215_231610.png";
         Texture2D texture = new Texture2D(2, 2);
-        texture.LoadImage(File.ReadAllBytes(this.filePath));
+        if (!texture.LoadImage(File.ReadAllBytes(this.filePath)))
+        {
+            Debug.Log("Texture Failed to Load...");
+        }
 
         //  Convert Texture2D to Sprite and assign to Image component
-        Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+        //Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
 
-        this.displayImage.sprite = sprite;
+        //this.displayImage.sprite = sprite;
 
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = sprite;
+        //spriteRenderer.sprite = sprite;
 
         gameObject.GetComponent<AvailableColors>().SetFilePath(this.filePath);
 

@@ -1002,15 +1002,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 2579326156796206767, guid: 3cf31f76da887cc4d942527caff5deb5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &928449208
@@ -1041,7 +1041,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   filePath: 
-  displayImage: {fileID: 1794280198}
+  displayImage: {fileID: 0}
 --- !u!114 &928449210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1175,8 +1175,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1361177430}
-  - component: {fileID: 1361177429}
+  - component: {fileID: 1794280196}
+  - component: {fileID: 1794280197}
   m_Layer: 0
   m_Name: ColorPickerGenerator
   m_TagString: Untagged
@@ -1191,7 +1191,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794280195}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1200,7 +1200,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 14.94, y: 2.79}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 6.1388, y: 5.3172}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1794280197
@@ -1217,27 +1217,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   filePath: 
   displayImage: {fileID: 0}
---- !u!114 &1794280198
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1361177428}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d0e923d13f877b47bc421c45db162bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  colorPicker: {fileID: 1408291627067959105, guid: ce39406b2becf0447a38099411f5bd73, type: 3}
---- !u!4 &1361177430
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1794280195}
-  m_CullTransparentMesh: 1
 --- !u!1001 &1933767336
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1388,3 +1367,4 @@ SceneRoots:
   - {fileID: 432121536}
   - {fileID: 928449208}
   - {fileID: 510150619}
+  - {fileID: 1794280196}
