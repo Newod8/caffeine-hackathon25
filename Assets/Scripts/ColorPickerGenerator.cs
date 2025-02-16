@@ -16,26 +16,22 @@ public class ColorPickerGenerator : MonoBehaviour
         colorOptions[2] = Color.blue;
         colorOptions[3] = Color.green;
         colorOptions[4] = Color.gray;
-        for(int i = 0; i < 5; i++)
+        for (int i = 0; i < 5; i++)
         {
             GameObject newColorPicker = Instantiate(colorPicker, new Vector3(-9.5f + (i * 1.5f), 4.2f, 4), Quaternion.identity);
             newColorPicker.GetComponent<SpriteRenderer>().color = colorOptions[i];
-            currentColorPickers[i] = newColorPicker;
+            this.currentColorPickers[i] = newColorPicker;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            ResetColorPickers();
-        }
+
     }
 
     public void GenerateColors(Color[] newColors)
-    {
-        ResetColorPickers();
+    {       
         if (newColors.Length < 5)
         {
             limit = newColors.Length;
@@ -44,20 +40,9 @@ public class ColorPickerGenerator : MonoBehaviour
         {
             limit = 5;
         }
-
         for (int i = 0; i < limit; i++)
         {
-            currentColorPickers[i].GetComponent<SpriteRenderer>().color = newColors[i];
-            currentColorPickers[i].SetActive(true);
-        }
-    }
-
-    private void ResetColorPickers()
-    {
-        print("Resetting Color Pickers");
-        for (int i = 0; i < limit; i++)
-        {
-            currentColorPickers[i].SetActive(false);
+            this.currentColorPickers[i].GetComponent<SpriteRenderer>().color = newColors[i];
         }
     }
 }
