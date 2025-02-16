@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SaltShaker : MonoBehaviour
@@ -10,16 +11,19 @@ public class SaltShaker : MonoBehaviour
     public float deadzone = 1;
     public float smoothness = 100;
     public float spawnRate = 1;
+    public GameObject sandGrain;
+    public string colorHex;
+    public Color sandColor;
+
     private Rigidbody2D rigidBody;
     private float spawnTimer = 0f;
-    private bool isValid;
-
-    public GameObject sandGrain;
+    public bool isValid;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         isValid = true;
+        sandColor = Color.yellow;
         gameObject.transform.position = new Vector2(0, 0);
         rigidBody = gameObject.GetComponent<Rigidbody2D>();
     }
@@ -46,24 +50,51 @@ public class SaltShaker : MonoBehaviour
             if (spawnTimer > spawnRate && isValid)
             {
                 spawnTimer = 0;
-                Instantiate(sandGrain, rigidBody.position, Quaternion.identity);
+                GameObject newSalt = Instantiate(sandGrain, rigidBody.position, Quaternion.identity);
+                newSalt.GetComponent<SpriteRenderer>().color = (sandColor);
             }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Play Area"))
+        switch (collision.tag)
         {
-            isValid = false;
+            case "DeadZone":
+                isValid = false;
+                break;
+            case "ColorPicker":
+                this.sandColor = collision.GetComponent<SpriteRenderer>().color;
+                break;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Play Area"))
+        if (collision.CompareTag("DeadZone"))
         {
             isValid = true;
         }
+    }
+
+    private void UpdateColor(string colorHex)
+    {
+        this.sandColor = HexToColor(colorHex);
+    }
+    private void UpdateColor(Color color)
+    {
+        this.sandColor = color;
+    }
+
+    private Color HexToColor(string hex)
+    {
+        if (hex.StartsWith("#"))
+            hex = hex.Substring(1);
+
+        byte r = byte.Parse(hex.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
+        byte g = byte.Parse(hex.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
+        byte b = byte.Parse(hex.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
+
+        return new Color(r / 255f, g / 255f, b / 255f);
     }
 }
