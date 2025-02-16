@@ -15,7 +15,7 @@ public class ImageGenerationScript : MonoBehaviour
     // Retrieve the OpenAI API key from environment variables
     private static readonly string? apiKey = Environment.GetEnvironmentVariable("OPEN_AI_KEY");
     // Define the API endpoint URL for image generation
-    private static readonly string apiUrl = "https://api.openai.com/v1/images/generations";
+    //private static readonly string apiUrl = "https://api.openai.com/v1/images/generations";
 
     public string filePath;
 

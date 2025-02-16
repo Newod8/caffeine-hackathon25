@@ -27,6 +27,7 @@ public class SaltShaker : MonoBehaviour
         gameObject.transform.position = new Vector2(0, 0);
         rigidBody = gameObject.GetComponent<Rigidbody2D>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        spriteRenderer.color = Color.yellow;
     }
 
     // Update is called once per frame
