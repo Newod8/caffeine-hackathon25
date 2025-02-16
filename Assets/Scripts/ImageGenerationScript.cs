@@ -37,12 +37,12 @@ public class ImageGenerationScript : MonoBehaviour
         }
 
         //  Convert Texture2D to Sprite and assign to Image component
-        //Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+        Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
 
         //this.displayImage.sprite = sprite;
 
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        //spriteRenderer.sprite = sprite;
+        spriteRenderer.sprite = sprite;
 
         gameObject.GetComponent<AvailableColors>().SetFilePath(this.filePath);
 

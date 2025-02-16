@@ -40,6 +40,7 @@ public class ColorPickerGenerator : MonoBehaviour
         {
             limit = 5;
         }
+
         for (int i = 0; i < limit; i++)
         {
             this.currentColorPickers[i].GetComponent<SpriteRenderer>().color = newColors[i];

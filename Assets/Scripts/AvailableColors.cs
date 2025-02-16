@@ -4,6 +4,7 @@ using System.Text;
 using UnityEngine;
 using OpenCvSharp;
 using UnityEngine.UI;
+using System.Linq;
 
 public class AvailableColors : MonoBehaviour
 {
@@ -38,17 +39,18 @@ public class AvailableColors : MonoBehaviour
     /// </summary>
     public void GetColors()
     {
-        if (string.IsNullOrEmpty(this.filePath))
-        {
-            Debug.LogError("File path is not set.");
-            return;
-        }
+        //if (string.IsNullOrEmpty(this.filePath))
+        //{
+        //    Debug.LogError("File path is not set.");
+        //    return;
+        //}
 
         // Ensure the file exists before loading the image
         if (File.Exists(this.filePath))
         {
             // Load image using OpenCvSharp
             Mat image = Cv2.ImRead(this.filePath);
+            
             if (image.Empty())
             {
                 Debug.LogError("Failed to load image data.");
@@ -107,6 +109,14 @@ public class AvailableColors : MonoBehaviour
         }
         
         return dominantColors;
+    }
+    private Mat TextureToMat(Texture2D texture)
+    {
+        Color32[] pixels = texture.GetPixels32();
+        Mat mat = new Mat(texture.height, texture.width, MatType.CV_8UC4);
+        byte[] pixelBytes = pixels.SelectMany(c => new byte[] { c.r, c.g, c.b, c.a }).ToArray();
+        // mat.SetArray<byte>(0, 0, pixelBytes);
+        return mat;
     }
 
     /// <summary>
