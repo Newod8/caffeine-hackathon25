@@ -127,7 +127,7 @@ public class ImageGenerationScript : MonoBehaviour
                 // Generate a unique filename for each image
                 string filename = $"image_{DateTime.Now:yyyyMMdd_HHmmss}.png";
 
-                string filePath = Path.Combine(folderPath, filename);\
+                string filePath = Path.Combine(folderPath, filename);
 
                 Debug.Log($"Image URL: {imageUrl}");
 
