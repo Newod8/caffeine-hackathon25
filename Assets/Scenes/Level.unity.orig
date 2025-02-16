@@ -865,8 +865,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95563aecdb3aa334ebeb353dd915b4b4, type: 3}
+<<<<<<< HEAD
 --- !u!1001 &1873206788
+=======
 --- !u!1001 &1933767336
+>>>>>>> 1bdc9ca1f63c76b136f958d333ba35d2e01e462d
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -876,16 +879,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2560994984108046264, guid: 90849c196203e9d46a728cea9e6291f1, type: 3}
       propertyPath: m_LocalPosition.x
+<<<<<<< HEAD
       value: -0.81492037
       objectReference: {fileID: 0}
     - target: {fileID: 2560994984108046264, guid: 90849c196203e9d46a728cea9e6291f1, type: 3}
       propertyPath: m_LocalPosition.y
       value: -7.2585254
+=======
       value: -0.9063575
       objectReference: {fileID: 0}
     - target: {fileID: 2560994984108046264, guid: 90849c196203e9d46a728cea9e6291f1, type: 3}
       propertyPath: m_LocalPosition.y
       value: -7.665254
+>>>>>>> 1bdc9ca1f63c76b136f958d333ba35d2e01e462d
       objectReference: {fileID: 0}
     - target: {fileID: 2560994984108046264, guid: 90849c196203e9d46a728cea9e6291f1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1017,5 +1023,8 @@ SceneRoots:
   - {fileID: 396032318}
   - {fileID: 976290593}
   - {fileID: 65257620}
+<<<<<<< HEAD
   - {fileID: 1873206788}
+=======
   - {fileID: 1933767336}
+>>>>>>> 1bdc9ca1f63c76b136f958d333ba35d2e01e462d
