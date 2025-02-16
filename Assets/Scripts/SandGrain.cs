@@ -1,3 +1,4 @@
+using System.Data;
 using UnityEngine;
 
 public class SandGrain : MonoBehaviour
@@ -21,6 +22,10 @@ public class SandGrain : MonoBehaviour
                 this.Freeze();
                 this.isFrozen = true;
             }
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Destroy(gameObject);
         }
     }
 
