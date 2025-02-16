@@ -29,7 +29,7 @@ public class ImageGenerationScript : MonoBehaviour
     private void Start()
     {
         
-        this.filePath = "C:\\Users\\river\\OneDrive\\Desktop\\Hackathon25 Project\\caffeine-hackathon25\\Assets\\GeneratedImages\\image_20250215_231140.png";
+        this.filePath = "C:\\Users\\Nicholas Lopez\\Desktop\\25 Hackathon\\caffeine-hackathon25\\Assets\\GeneratedImages\\image_20250216_051435.png";
         Texture2D texture = new Texture2D(2, 2);
         texture.LoadImage(File.ReadAllBytes(this.filePath));
 
