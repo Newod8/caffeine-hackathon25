@@ -29,7 +29,7 @@ public class AvailableColors : MonoBehaviour
     public void SetFilePath(string path)
     {
         this.filePath = path;
-        GetColors();
+        //GetColors();
     }
 
 
@@ -57,6 +57,12 @@ public class AvailableColors : MonoBehaviour
 
             // Perform color quantization and retrieve dominant colors
             finalColors = ColorQuantization(image, numberOfColors);
+
+            Debug.Log($"Extracted {finalColors.Count} dominant colors from the image.");
+            for (int i = 0; i < finalColors.Count; i++)
+            {
+                Debug.Log($"Color {i + 1}: {finalColors[i]}");
+            }
 
             // Display the dominant colors in the UI
             //DisplayColors();
@@ -107,7 +113,7 @@ public class AvailableColors : MonoBehaviour
             float r = centers.At<float>(i, 2); // Red
 
             // Convert BGR to RGB and create Unity Color
-            Color unityColor = new Color(r , g, b, 1f);
+            Color unityColor = new Color(r, g, b, 1f);
             dominantColors.Add(unityColor);
             sb.AppendLine(unityColor.ToString());
         }
